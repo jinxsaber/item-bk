@@ -2,18 +2,12 @@ const Item = require('../model/Item');
 const mongoose = require('mongoose');
 
 const addItem = async (req, res) => {
-  const { name, type, description, images } = req.body;
+  const { name, type, description} = req.body;
   try {
-    for (const img of images) {
-      if (!img.match(/^data:image\/[a-z]+;base64,/)) {
-        return res.status(400).json({ error: 'Invalid image format' });
-      }
-    }
     const item = await Item.create({
       name,
       type,
       description,
-      images,
     });
     res.status(200).json(item);
   } catch (error) {

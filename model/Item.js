@@ -12,17 +12,7 @@ const itemSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true,
-  },
-  images: {
-    type: [String],
-    required: true,
-    validate: {
-      validator: function (arr) {
-        return arr.length > 0;
-      },
-      message: 'At least one image is required',
-    },
-  },
+  }
 });
 
 const Item = mongoose.model('Item', itemSchema);
