@@ -12,12 +12,19 @@ app.use(express.json({ limit: '10mb' }));
 
 app.use('/', router);
 
+// mongoose.connect(process.env.MONGO_URI)
+//   .then(() => {
+//     app.listen(process.env.PORT, () => {
+//       console.log("Connected to MongoDB and listening everything");
+//     });
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => {
-    app.listen(process.env.PORT, () => {
-      console.log("Connected to MongoDB and listening everything");
-    });
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+    .then(() => console.log('Connected to MongoDB'))
+  .catch((error) => console.error('MongoDB connection error:', error));
+
+
+module.exports = app;
